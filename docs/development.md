@@ -38,6 +38,6 @@ macOS：NetFSMountURLSync/CoreFoundation 管理 URL 和凭证，使用 NoUI 防�
 
 所有分支推送、PR 和手动运行都会触发检查。`main` 推送及手动运行额外生成 macOS arm64/x64 DMG 和 Windows x64 NSIS 安装包，保存到 Actions Artifacts 14 天，不自动发布 Release。PR 和其他分支只验证目录包。单个平台最多运行 30 分钟，同一分支或 PR 的新提交会取消旧检查；两个平台的错误独立报告。
 
-CI 使用只读源码权限，不需要 NAS 凭证或签名密钥。失败时保留 Playwright 跟踪、截图和构建诊断 7 天（存在时上传）。本地可运行 `pnpm format:check`、`pnpm typecheck`、`pnpm test` 和 `pnpm test:e2e` 复现检查；格式修复使用 `pnpm format`。
+CI 使用只读源码权限，不需要 NAS 凭证或签名密钥。失败时保留 Playwright 跟踪、截图和构建诊断 7 天（存在时上传）。本地可运行 `pnpm format:check`、`pnpm typecheck`、`pnpm test` 和 `pnpm test:e2e` 复现检查；格式修复使用 `pnpm format`。`.gitattributes` 统一文本换行为 LF，避免 Windows 自动转换后产生格式误报。
 
 真实 NAS、双电脑 AI 操作及证书发布需要独立验收。GitHub 构建成功不表示已完成物理 Windows 电脑、Intel Mac 或真实 NAS 的安装和读写验收。
