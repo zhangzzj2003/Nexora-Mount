@@ -19,7 +19,8 @@
     "pack": "pnpm build && electron-builder --dir",
     "dist:mac": "pnpm build && electron-builder --mac dmg --arm64 --x64",
     "dist:win": "pnpm build && electron-builder --win nsis --x64",
-    "format": "prettier --write src tests *.ts *.json *.yml .github/workflows/*.yml"
+    "format": "prettier --write src tests *.ts *.json *.yml .github/workflows/*.yml",
+    "format:check": "prettier --check src tests *.ts *.json *.yml .github/workflows/*.yml"
   },
   "dependencies": {
     "@lucide/vue": "1.61.0",

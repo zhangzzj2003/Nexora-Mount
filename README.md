@@ -32,6 +32,7 @@ pnpm dev
 
 ```sh
 # 类型检查、业务测试与桌面自动化。
+pnpm format:check
 pnpm typecheck
 pnpm test
 pnpm test:e2e
@@ -67,6 +68,12 @@ pnpm dist:win
 ```
 
 输出在 `dist/`。macOS 分别生成 arm64/x64 DMG，Windows 为 x64 NSIS 安装包。发布构建优先在对应系统执行；macOS 代码签名和公证需要 Apple Developer 证书，Windows 签名需要对应证书。未提供证书时生成测试包，不能将构建成功等同于签名、公证或 SmartScreen 认可。
+
+## GitHub 自动检查与构建
+
+每次分支推送或提交 PR，[GitHub Actions](https://github.com/zhangzzj2003/Nexora-Mount/actions/workflows/check.yml) 都会在 Windows/macOS 检查格式、类型、业务逻辑、Electron 桌面流程及目录包构建。同一分支的新提交会取消旧检查。
+
+推送到 `main` 或在 Actions 点击 **Run workflow**，还会生成 Windows x64 安装包及 macOS arm64/x64 DMG。打开对应运行记录，在页面底部 **Artifacts** 下载 `installers-Windows-*` 或 `installers-macOS-*`（需登录 GitHub，保留 14 天）。失败时保存诊断文件 7 天。这些是未签名测试包，正式版本仍在 Releases 单独发布。
 
 详见 [开发说明](docs/development.md)、[验收说明](docs/acceptance.md)、[本次验证记录](docs/verification.md)。飞牛 ID、中继和自动合并属于后续阶段。
 
