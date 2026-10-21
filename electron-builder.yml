@@ -1,0 +1,28 @@
+appId: com.nexora.mount
+productName: Nexora Mount
+directories:
+  output: dist
+files:
+  - out/**/*
+  - package.json
+  - LICENSE
+  - docs/THIRD_PARTY_NOTICES.md
+  - docs/licenses/**/*
+asarUnpack:
+  - node_modules/koffi/**/*
+  - node_modules/@koromix/**/*
+npmRebuild: false
+mac:
+  category: public.app-category.utilities
+  minimumSystemVersion: '13.0'
+  target:
+    - target: dmg
+      arch: [arm64, x64]
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true

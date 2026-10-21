@@ -1,0 +1,6 @@
+packages:
+  - .
+# 交叉打包时同时准备三个目标平台的原生预编译模块。
+supportedArchitectures:
+  os: [current, darwin, win32]
+  cpu: [current, x64, arm64]

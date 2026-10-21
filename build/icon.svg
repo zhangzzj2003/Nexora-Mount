@@ -1,0 +1,2 @@
+<!-- Nexora Mount 原创图标：两个端点共享同一条连接，呼应双端访问 NAS。 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><rect x="32" y="32" width="960" height="960" rx="210" fill="#3369df"/><path d="M338 270v362l78 78h194l80-80V270" fill="none" stroke="white" stroke-width="68" stroke-linejoin="round"/><g fill="#3369df" stroke="white" stroke-width="43"><rect x="260" y="235" width="156" height="195" rx="45"/><rect x="612" y="235" width="156" height="195" rx="45"/></g><path d="M338 170v65m352-65v65" stroke="white" stroke-width="36"/></svg>
