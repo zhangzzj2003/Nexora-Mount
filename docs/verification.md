@@ -13,7 +13,7 @@
 | Intel Mac 应用 | 已配置并构建 x64 产物；本机 Rosetta 自动化未完成，不计为 Intel 真机验收 |
 | Windows | 构建目标为 x64 NSIS；当前没有 Windows 真机验收证据 |
 | 最终安装包 | Apple Silicon/Intel DMG 与 Windows x64 NSIS 均构建成功；两个 DMG 的 hdiutil 完整性检查通过；SHA-256 记录于 dist/SHA256SUMS.txt |
-| GitHub CI | 已提供 Windows/macOS 工作流；尚未上传仓库，未运行远端 CI |
+| GitHub CI | 已发布公开仓库并启用 Windows/macOS 工作流，最新运行结果见 [Actions](https://github.com/zhangzzj2003/Nexora-Mount/actions/workflows/check.yml)；Windows 测试按实际 WebClient 可用性分别验证网络错误或依赖提示 |
 | 真实 NAS / 双电脑 AI | 尚未提供 NAS 环境，需要按 acceptance.md 验收 |
 
 网络不可达测试使用已释放的本机端口，避免本机代理的 Fake-IP 使保留域名产生错误的端口可达结果。原生 WebDAV 测试只监听 127.0.0.1，不暴露局域网服务。

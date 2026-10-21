@@ -32,10 +32,28 @@ test('桌面连接管理、原生枚举、输入验证与诊断', async () => {
     await page.getByLabel('WebDAV 地址').fill(`http://127.0.0.1:${closedPort}/dav/资料/`)
     await page.getByRole('button', { name: '保存连接', exact: true }).click()
     await expect(page.getByRole('heading', { name: '远程资料', exact: true })).toBeVisible()
-    await page.getByRole('button', { name: '连接目录', exact: true }).click()
-    await expect(page.getByText('无法连接 NAS 服务端口，请检查网络与地址。').first()).toBeVisible({
-      timeout: 15000
+    // Windows CI 可能未安装 WebClient；此时应验证依赖提示，而不是错误地要求网络错误。
+    const capability = await page.evaluate(async () => {
+      const snapshot = await window.nexora.snapshot()
+      const connection = snapshot.connections.find((row) => row.config.name === '远程资料')!
+      return window.nexora.probe(connection.config.id)
     })
+    await page.getByRole('button', { name: '连接目录', exact: true }).click()
+    const expectedCode = capability.available ? 'NETWORK' : 'DEPENDENCY'
+    await expect
+      .poll(
+        async () =>
+          page.evaluate(async () => {
+            const snapshot = await window.nexora.snapshot()
+            return snapshot.connections.find((row) => row.config.name === '远程资料')?.state.error
+              ?.code
+          }),
+        { timeout: 15000 }
+      )
+      .toBe(expectedCode)
+    await expect(page.getByRole('status')).toContainText(
+      capability.available ? '无法连接 NAS 服务端口' : 'WebClient'
+    )
     await page.getByRole('button', { name: '编辑', exact: true }).click()
     await page.getByLabel('连接名称', { exact: true }).fill('资料 WebDAV')
     await page.getByRole('button', { name: '保存连接', exact: true }).click()
